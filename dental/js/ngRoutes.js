@@ -5,11 +5,12 @@ myApp.run(function($rootScope, $location, $routeParams){
 });
 myApp.config(function($routeProvider, $locationProvider){
 	$routeProvider
+		
 		.when('/', {
 			templateUrl: 'dental/partials/home.html',
 			controller: 'mainController'
 		})
-
+		
 		.when('/login', {
 			templateUrl : 'dental/partials/login.html',
 			controller : 'formController'
@@ -48,7 +49,7 @@ myApp.controller('formController', function($scope, $rootScope, $http, $location
 				$scope.alerts = response.message;
 			}
 			else{
-					$location.path('/about');
+					$location.path('/');
 				}
     	});
     };
