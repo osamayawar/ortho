@@ -1,0 +1,42 @@
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.css' />
+<link rel='stylesheet' href='dental/css/calendar.css' />
+
+<!-- <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js'></script> -->
+
+
+<script>
+	$(document).ready(function() {
+	
+		$('#calendar').fullCalendar({
+
+			// THIS KEY WON'T WORK IN PRODUCTION!!!
+			// To make your own Google API key, follow the directions here:
+			// http://fullcalendar.io/docs/google_calendar/
+			googleCalendarApiKey: 'AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE',
+			events: [
+	        	{
+	            	title: 'Event1',
+	            	start: '2016-02-02'
+		        },
+		        {
+		            title: 'Event2',
+		            start: '2016-02-02'
+		        }
+			]
+		});
+		
+	});
+
+</script>
+<style>
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+</style>
+
+<div class="row">
+	<div id='calendar'></div>
+</div>

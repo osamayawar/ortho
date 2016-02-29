@@ -13,7 +13,7 @@ myApp.config(function($routeProvider, $locationProvider){
 		
 		.when('/login', {
 			templateUrl : 'dental/partials/login.html',
-			controller : 'formController'
+			controller : 'loginController'
 		})
 
 		.when('/patient/new', {
@@ -24,16 +24,21 @@ myApp.config(function($routeProvider, $locationProvider){
 		.when('/contact', {
 			templateUrl : 'dental/partials/contact.html',
 			controller : 'contactController'
-		});
+		})
+
+		.when('/calendar', {
+			templateUrl : 'dental/partials/calendar.html',
+			controller : 'calendarController'
+		})
 });
 
 
 
-myApp.controller('mainController', function($scope, $rootScope, $location) {
+myApp.controller('mainController', function($scope) {
 	$scope.message = 'This is the main page';
 });
 
-myApp.controller('patientController', function($scope, $rootScope) {
+myApp.controller('patientController', function($scope) {
 	$scope.message = "This is about page";
 });
 
@@ -41,7 +46,7 @@ myApp.controller('contactController', function($scope) {
 	$scope.message = "This is contact page";
 });
 
-myApp.controller('formController', function($scope, $rootScope, $http, $location) {
+myApp.controller('loginController', function($scope, $http, $location) {
 	$scope.update = function(user) {
 		$http.post('api/user/getFormData', user)
 		.success(function(response, status){
@@ -53,15 +58,8 @@ myApp.controller('formController', function($scope, $rootScope, $http, $location
 				}
     	});
     };
-
-       // $scope.showSideBar =
-       // if($routeParams.paramName == 'login'){
-       //     return false;
-       // }else{
-       //     return true;
-       // }
-     // };
-
 });
 
-
+myApp.controller('calendarController', function($scope) {
+	$scope.message = "This is calendar page";
+});
