@@ -21,11 +21,6 @@ myApp.config(function($routeProvider, $locationProvider){
 			controller : 'patientController'
 		})
 
-		.when('/contact', {
-			templateUrl : 'dental/partials/contact.html',
-			controller : 'contactController'
-		})
-
 		.when('/calendar', {
 			templateUrl : 'dental/partials/calendar.html',
 			controller : 'calendarController'
