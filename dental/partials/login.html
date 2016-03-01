@@ -1,5 +1,5 @@
 <div class="row">
-    <div ng-controller="loginController" class="col-md-4 col-md-offset-4 top-buffer">
+    <div ng-controller="LoginController" class="col-md-4 col-md-offset-4 top-buffer">
         <div ng-show="alerts != null" class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
@@ -9,14 +9,14 @@
         <form novalidate>
             <div class="form-group">
                 <label>Email address</label>
-                <input type="email" class="form-control" name="email" ng-model="user.email" id="email" placeholder="Email">
+                <input type="text" class="form-control" ng-model="user.email" id="email" placeholder="Email">
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" name="password" ng-model="user.password" id="password" placeholder="Password">
+                <input type="password" class="form-control" ng-model="user.password" id="password" placeholder="Password">
             </div>
             <div class="alert alert-danger" style="display:none;" role="alert"></div>
-            <input type="submit" ng-click="update(user)" class="btn btn-default"></input>
+            <input type="submit" ng-click="validate(user)" class="btn btn-default">
         </form>
     </div>
 </div>

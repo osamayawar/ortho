@@ -4,22 +4,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class User extends MY_Controller
 {
 
-	// public function login() {
- //        $data = [];
- //    	if(empty($this->logged_in())) {
-	//     	$this->template
-	//             ->setViewPath('/user/login')
-	//             ->setViewData($data)
-	// 	  		->render();
-	//   	}
-	//   	else{
-	//   		redirect('/');
-	//   	}
- //    }
-
-    public function getFormData(){
+	public function getFormData(){
         $user = json_decode(file_get_contents("php://input"));
-        
         $email = $user->email;
     	$password = $user->password;
 
@@ -40,20 +26,17 @@ class User extends MY_Controller
 	    }
 	}
 
-    private function validateForm($email, $password) {
-    	if(empty(trim($email)) || empty(trim($password)))
+    public function validateForm($email, $password) {
+        if(empty(trim($email)) || empty(trim($password))) {
     		return array(
     			"error_code" => 0, 
     			"message" => "Username or password cannot be empty"
     		);
+        }
     	else {
     		return array("error_code" => 1);
     	}
     } 
 
-    // public function logout() {
-    // 	$this->session->sess_destroy();
-    // 	redirect('/user/login');
-    // }  
 }
 ?>
