@@ -13,7 +13,7 @@ class user_model extends CI_Model {
 		else {
 			$row = $query->row();
 			$this->session->set_userdata(array(
-				'is_session' => TRUE,
+				'id' => md5(uniqid(rand(), true)),
 				'clinic' => $row->clinic_name,
 				'email' => $row->email,
 			));

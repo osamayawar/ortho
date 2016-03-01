@@ -2,6 +2,7 @@
 
 var myApp = angular.module('myApp', ['ngRoute']);
 myApp.run(function($rootScope, $location, $routeParams){
+	$rootScope.init = "osama";
 });
 myApp.config(function($routeProvider, $locationProvider){
 	$routeProvider
