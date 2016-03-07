@@ -16,6 +16,7 @@ class user_model extends CI_Model {
 				'id' => md5(uniqid(rand(), true)),
 				'clinic' => $row->clinic_name,
 				'email' => $row->email,
+				'authenticated' => true
 			));
 			return array(
 				"error_code" => 1,

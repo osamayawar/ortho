@@ -3,7 +3,6 @@ myApp.controller('MainController', function($scope) {
 });
 
 myApp.controller('PatientController', function($scope, $rootScope) {
-	console.log($rootScope);
 	$scope.message = "This is about page";
 });
 
@@ -12,7 +11,7 @@ myApp.controller('ContactController', function($scope) {
 });
 
 myApp.controller('LoginController', function($scope, $rootScope, $http, $location) {
-	$scope.validate = function(user) {
+	$scope.submitLoginForm = function(user) {
 		$http.post('api/user/getFormData', user)
 		.success(function(response, status){
 			if(response.error_code == 0) {
@@ -20,19 +19,19 @@ myApp.controller('LoginController', function($scope, $rootScope, $http, $locatio
 			}
 			else
 			{
-				if(angular.isDefined(response.session.id)) {
-					$rootScope.session = true;
-					$location.path('/');
-				}
-				else {
-					delete $rootScope.session;
-				}
-
+				$location.path('/');
 			}
 
     	});
-    	// console.log($rootScope);
+    };
 
+    $scope.logout = function() {
+    	$http.get('api/user/logout')
+    		.then(function(res){
+    			if(res.data.error_code == 1) {
+    				$location.path('/login');
+    			}
+    		});
     };
 
 });

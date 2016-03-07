@@ -38,5 +38,39 @@ class User extends MY_Controller
     	}
     } 
 
+    public function authenticated() {
+        $sessionData = array(
+            "sessionid" => "",
+            "clinic_name" => "",
+            "email" => "",
+            "authenticated" => false
+        );
+
+        if(isset($_SESSION['id']) && isset($_SESSION['clinic']) && isset($_SESSION['email']) && isset($_SESSION['authenticated'])) {
+            $sessionData = array(
+                "sessionid" => $_SESSION['id'],
+                "clinic_name" => $_SESSION['clinic'],
+                "email" => $_SESSION['email'],
+                "authenticated" => $_SESSION['authenticated']
+            );
+
+            echo json_encode($sessionData);
+        }
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        
+        unset($_SESSION['id']);
+        unset($_SESSION['clinic']);
+        unset($_SESSION['email']);
+        unset($_SESSION['authenticated']);
+        
+        // return
+        $response = array("error_code" => 1);
+        echo json_encode($response);
+    }
+
 }
 ?>
