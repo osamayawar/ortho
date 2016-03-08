@@ -5,18 +5,28 @@
             <span class="sr-only">Error:</span>
             {{alerts}}
         </div>
-            
-        <form novalidate>
-            <div class="form-group">
+         <div class="box box-danger">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Login</h3>
+                </div><!-- /.box-header -->
+        <form role="form" novalidate>
+            <div class="box-body">
                 <label>Email address</label>
-                <input type="text" class="form-control" ng-model="user.email" id="email" placeholder="Email">
-            </div>
-            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    <input type="text" class="form-control" ng-model="user.email" id="email" placeholder="Email">
+                </div>
+                <br>
                 <label>Password</label>
-                <input type="password" class="form-control" ng-model="user.password" id="password" placeholder="Password">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                    <input type="password" class="form-control" ng-model="user.password" id="password" placeholder="Password">
+                </div>
             </div>
-            <div class="alert alert-danger" style="display:none;" role="alert"></div>
-            <input type="submit" ng-click="submitLoginForm(user)" class="btn btn-default">
-        </form>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary" ng-click="submitLoginForm(user)">Login</button>
+            </div>
+        </form>  
+        </div>
     </div>
 </div>

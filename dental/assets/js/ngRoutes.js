@@ -2,10 +2,11 @@
 
 var myApp = angular.module('myApp', ['ngRoute']);
 myApp.run(function($rootScope, $http, $location, $routeParams){
+	$rootScope.authenticated = false;
 	$rootScope.$on("$routeChangeStart", function(e, current, previous){
 		$http.get('api/user/authenticated')
 			.then(function(res){
-				if(res.data.authenticated == true) {
+				if(res.data.authenticated == true && angular.isDefined(res.data.authenticated)) {
 					$rootScope.authenticated = res.data.authenticated;
                 	$rootScope.clinicname = res.data.clinic_name;
                 	$rootScope.email = res.data.email;
@@ -19,8 +20,8 @@ myApp.run(function($rootScope, $http, $location, $routeParams){
                 	}
 				}
 				else {
+					$rootScope.authenticated = false;
 					if (angular.isObject(current.$$route)) {
-						console.log(current.$$route);
 						if (current.$$route.originalPath !== '/login') {
 							$location.path('/login');
 						}
@@ -28,6 +29,7 @@ myApp.run(function($rootScope, $http, $location, $routeParams){
 				}
 			});
 	});
+	console.log($rootScope);
 });
 myApp.config(function($routeProvider, $locationProvider){
 	$routeProvider
