@@ -2,6 +2,7 @@
 
 var myApp = angular.module('myApp', ['ngRoute']);
 myApp.run(function($rootScope, $http, $location, $routeParams){
+	$rootScope.authenticated = false;
 	$rootScope.$on("$routeChangeStart", function(e, current, previous){
 		$http.get('api/user/authenticated')
 			.then(function(res){
