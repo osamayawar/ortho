@@ -24,23 +24,27 @@
 	<link rel="stylesheet" rel="stylesheet" href="dental/assets/css/_all-skins.min.css">
     <link rel="stylesheet" rel="stylesheet" href="dental/assets/css/main.css">
 
+    <link rel="stylesheet" href="dental/assets/css/fullcalendar.min.css">
+    <link rel="stylesheet" href="dental/assets/css/fullcalendar.print.css" media="print">
+
 	<!-- CSS ENDS HERE -->
 	
 	<!-- JS !-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
 	
 	<script src="dental/assets/bootstrap/js/bootstrap.min.js"></script>
 	
 	<script type="text/javascript" src="dental/assets/js/tablesorter.min.js"></script>
-	
-	<script src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js'></script>
-	<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
 
 	<script src="dental/assets/js/app.min.js"></script>
     <script src="dental/assets/js/demo.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="dental/assets/js/fullcalendar.min.js"></script>
 
     <script src="dental/assets/js/ngRoutes.js"></script>
     <script src="dental/assets/js/controllers.js"></script>
@@ -57,14 +61,12 @@
     <div ng-if="authenticated"  class="wrapper">
         <header class="main-header">
             <a href="#" class="logo">
+                <span class="logo-mini"><b>A</b>LT</span>
                 <span class="logo-lg"><b>Ortho</b>Dont</span>
             </a>
             <nav class="navbar navbar-static-top" role="navigation">
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
@@ -101,23 +103,22 @@
                     </div>
                     <div class="pull-left info">
                         <p>{{clinicname}}</p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        <a href=""><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
           
                 <ul class="sidebar-menu">
                     <li class="header">MAIN NAVIGATION</li>
-                        <li>
-                            <a href="#patient/new">
-                                <i class="fa fa-plus"></i> <span>Add new patient</span>
-                                <small class="label pull-right bg-red"></small>
-                            </a>
-                        </li>
-
+                    <li>
+                        <a href="#patient/new">
+                            <i class="fa fa-plus"></i> <span>Add new patient</span>
+                            <small class="label pull-right bg-red">2</small>
+                        </a>
+                    </li>
                     <li>
                         <a href="#calendar">
                             <i class="fa fa-calendar"></i> <span>Calendar</span>
-                            <small class="label pull-right bg-red"></small>
+                            <small class="label pull-right bg-green">3</small>
                         </a>
                     </li>
                 </ul>
