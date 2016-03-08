@@ -1,13 +1,16 @@
 myApp.controller('MainController', function($scope) {
-	$scope.message = 'This is the main page';
 });
 
 myApp.controller('PatientController', function($scope, $rootScope) {
-	$scope.message = "This is about page";
+	Date.now = new Date().getTime();
+	$scope.patient = {};
+	$scope.patient.uniqueid = Math.floor(Date.now/1000);
+	$scope.patient.initials = "Mr";
+	$scope.patient.maritalstatus = "Single";
+	// $scope.$digest();
 });
 
 myApp.controller('ContactController', function($scope) {
-	$scope.message = "This is contact page";
 });
 
 myApp.controller('LoginController', function($scope, $rootScope, $http, $location) {
@@ -37,5 +40,4 @@ myApp.controller('LoginController', function($scope, $rootScope, $http, $locatio
 });
 
 myApp.controller('CalendarController', function($scope) {
-	$scope.message = "This is calendar page";
 });
