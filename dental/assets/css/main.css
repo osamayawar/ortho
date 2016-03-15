@@ -48,3 +48,7 @@ body {
 .visit_reason {
 	resize: vertical;
 }
+
+.content-wrapper {
+	height: 100%;
+}

@@ -18,8 +18,7 @@ myApp.controller('PatientController', function($scope, $rootScope) {
 
 	$scope.patient.occupation = 'Business';
 	$scope.patient.occupations = ['Business', 'Doctor', 'Landlord', 'Professional', 'Retired', 'Housewife', 'Service', 'Student'];	
-	console.log($scope.patient);
-	// $scope.$digest();
+
 });
 
 myApp.controller('ContactController', function($scope) {
