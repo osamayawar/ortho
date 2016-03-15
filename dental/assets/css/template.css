@@ -1237,7 +1237,8 @@ a:focus {
 .form-control {
   border-radius: 0;
   box-shadow: none;
-  border-color: #d2d6de;
+  /*border-color: #d2d6de;*/
+  border-color: rgba(132, 132, 132, 0.70);
 }
 .form-control:focus {
   border-color: #3c8dbc;
