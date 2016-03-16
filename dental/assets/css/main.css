@@ -52,3 +52,7 @@ body {
 .content-wrapper {
 	height: 100%;
 }
+
+.thead {
+    cursor: pointer;
+}

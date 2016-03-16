@@ -12,8 +12,10 @@ class Patient extends MY_Controller
 	}
 
 	public function getAllPatients() {
-		$query = $this->db->get('user');
-		echo json_encode($query);
+		$query = $this->db 
+					->select(array('id', 'clinic_name', 'email', 'contact'))
+					->get('user');
+		echo json_encode($query->result_array());
 	}
 }
 ?>
