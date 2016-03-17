@@ -1,6 +1,6 @@
 'use strict'
 
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
 
 myApp.run(function($rootScope, $http, $location, $routeParams){
 	$rootScope.authenticated = false;
