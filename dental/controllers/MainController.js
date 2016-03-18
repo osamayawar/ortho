@@ -1,17 +1,26 @@
-myApp.controller('MainController', function($scope, $http, $filter) {
+myApp.controller('MainController', function($scope, $http, $filter, $q) {
 
-	$http.post('api/patient/getAllPatients')
-	.success(function(res){
-		$scope.patientsList = res;
-	});
-
+	
 	$scope.tableheaders = ['ID', 'Clinic Name', 'Email', 'Contact'];
+	$scope.reverse = true;
+
+	/** Get list and count of all the patients */
+	var totalPatientsCount = 0;
+	var promise = $http.get('api/patient/getAllPatients');
+	promise.then(
+		function(res) {
+			$scope.patientsList = res.data;
+			totalPatientsCount = res.data.length;
+		});
+	promise.then(
+		function(){
+			$scope.initPagination(totalPatientsCount);
+		});
 
 	/** Table Sorter **/
 	var orderBy = $filter('orderBy');
 	
-	$scope.reverse = true;
-  
+	
   	$scope.order = function(predicate) {
   		$scope.predicate = predicate;
   		$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
@@ -20,4 +29,14 @@ myApp.controller('MainController', function($scope, $http, $filter) {
   	
   	$scope.order('id', true);
   	/** Table Sorter Ends Here**/
+  	
+
+  	/** Pagination */
+  	$scope.initPagination = function(patientCount) {
+  		$scope.totalItems = patientCount;
+  		$scope.currentPage = 1;
+  		$scope.maxSize = 5;
+	}
+
+	/** Pagination Ends Here */
 });
