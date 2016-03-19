@@ -20,7 +20,6 @@ myApp.controller('MainController', function($scope, $http, $filter, $q) {
 	/** Table Sorter **/
 	var orderBy = $filter('orderBy');
 	
-	
   	$scope.order = function(predicate) {
   		$scope.predicate = predicate;
   		$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
@@ -33,10 +32,21 @@ myApp.controller('MainController', function($scope, $http, $filter, $q) {
 
   	/** Pagination */
   	$scope.initPagination = function(patientCount) {
-  		$scope.totalItems = patientCount;
+  		// $scope.totalItems = patientCount;
+  		// $scope.currentPage = 1;
+  		// $scope.maxSize = 15;
+  		$scope.itemsPerPage = 15
   		$scope.currentPage = 1;
-  		$scope.maxSize = 5;
-	}
 
+  		
+  			$scope.totalItems = $scope.patientsList.length;
+  			$scope.$watch('currentPage + itemsPerPage', function() {
+  				var begin = (($scope.currentPage - 1) * $scope.itemsPerPage),
+  				end = begin + $scope.itemsPerPage;
+				$scope.filteredPatientsList = $scope.patientsList.slice(begin, end);
+    			return $scope.filteredPatientsList;
+    		});
+  		// });
+	}
 	/** Pagination Ends Here */
 });

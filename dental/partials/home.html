@@ -6,39 +6,28 @@
 	  	</h1>
 	</section>
 	<section class="content">
-		<div class="row">
-			<div class="col-md-12">
-				<!-- <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" num-pages="numPages" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false" ng-change="pageChanged()"></uib-pagination> -->
-				<!-- <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre> -->
-				<!-- <uib-pagination total-items="patientsList.length" page="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" class="pull-right"></uib-pagination> -->
-				<uib-pagination total-items="totalItems" ng-model="currentPage"></uib-pagination>
-			</div>
-		</div>
-		<!-- <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination> -->
 		<div class="box">
 			<div class="box-body table-responsive no-padding">
 				<table id="patientsTable" class="table table-hover">
 	    			<thead class='thead'>
-	    				<!-- <span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span> -->
-		          		<th ng-click="order('id')">ID</th>
-		          		<!-- <span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span> -->
+	              		<th ng-click="order('id')">ID</th>
 			          	<th ng-click="order('clinic_name')">Clinic Name</th>
-			          	<!-- <span class="sortorder" ng-show="predicate === 'clinic_name'" ng-class="{reverse:reverse}"></span> -->
 			          	<th ng-click="order('email')">Email</th>
-			          	<!-- <span class="sortorder" ng-show="predicate === 'email'" ng-class="{reverse:reverse}"></span> -->
 			          	<th ng-click="order('contact')">Phone</th>
-			          	<!-- <span class="sortorder" ng-show="predicate === 'contact'" ng-class="{reverse:reverse}"></span> -->
-	    			</thead>
-	    			<tr ng-repeat="patient in patientsList.slice(((currentPage-1)*maxSize), ((currentPage)*maxSize)) track by $index">
+					</thead>
+	    			<tr ng-repeat="patient in filteredPatientsList">
 			         	<td>{{patient.id}}</td>
 			         	<td>{{patient.clinic_name}}</td>
 			         	<td>{{patient.email}}</td>
 			         	<td>{{patient.contact}}</td>
 			     	</tr>
-
 	  			</table>
 			</div>
 		</div>
-
+		<div class="row">
+			<div class="col-md-12">
+				<uib-pagination class="pull-right" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage"></uib-pagination>
+			</div>
+		</div>
 	</section>
 </div>
