@@ -1,6 +1,5 @@
-myApp.controller('MainController', function($scope, $http, $filter, $q) {
+myApp.controller('MainController', function($scope, $http, $filter, $q, $rootScope) {
 
-	
 	$scope.tableheaders = ['ID', 'Clinic Name', 'Email', 'Contact'];
 	$scope.reverse = true;
 
@@ -17,7 +16,6 @@ myApp.controller('MainController', function($scope, $http, $filter, $q) {
 			$scope.initPagination(totalPatientsCount);
 		});
 
-	/** Table Sorter **/
 	var orderBy = $filter('orderBy');
 	
   	$scope.order = function(predicate) {
@@ -27,14 +25,8 @@ myApp.controller('MainController', function($scope, $http, $filter, $q) {
   	};
   	
   	$scope.order('id', true);
-  	/** Table Sorter Ends Here**/
   	
-
-  	/** Pagination */
   	$scope.initPagination = function(patientCount) {
-  		// $scope.totalItems = patientCount;
-  		// $scope.currentPage = 1;
-  		// $scope.maxSize = 15;
   		$scope.itemsPerPage = 15
   		$scope.currentPage = 1;
 

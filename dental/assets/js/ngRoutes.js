@@ -8,9 +8,12 @@ myApp.run(function($rootScope, $http, $location, $routeParams){
 		$http.get('api/user/authenticated')
 			.then(function(res){
 				if(res.data.authenticated == true && angular.isDefined(res.data.authenticated)) {
+					$rootScope.userid = res.data.user_id;
 					$rootScope.authenticated = res.data.authenticated;
                 	$rootScope.clinicname = res.data.clinic_name;
+                	$rootScope.contact = res.data.contact;
                 	$rootScope.email = res.data.email;
+
 
                 	if(angular.isDefined(previous)) {
 	                	if (angular.isObject(current.$$route) && angular.isObject(previous.$$route)) {
@@ -29,6 +32,7 @@ myApp.run(function($rootScope, $http, $location, $routeParams){
 					}
 				}
 			});
+		console.log($rootScope);
 	});
 });
 

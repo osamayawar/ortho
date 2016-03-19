@@ -3,7 +3,11 @@
 class user_model extends CI_Model {
 	
 	public function getUser($email, $password) {
-		$query = $this->db->get_where('user', array('email'=>$email, "password"=>md5($password)));
+		$query = $this->db->select('*')
+					->where('email', $email)
+					->where('password', md5($password))
+					->get('user');
+		
 		if(empty($query->result())){
 			return array(
 				"error_code" => 0,
@@ -13,9 +17,10 @@ class user_model extends CI_Model {
 		else {
 			$row = $query->row();
 			$this->session->set_userdata(array(
-				'id' => md5(uniqid(rand(), true)),
+				'user_id' => $row->id,
 				'clinic' => $row->clinic_name,
 				'email' => $row->email,
+				'contact' => $row->contact,
 				'authenticated' => true
 			));
 			return array(

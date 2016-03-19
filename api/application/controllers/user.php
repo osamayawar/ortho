@@ -8,14 +8,13 @@ class User extends MY_Controller
         $user = json_decode(file_get_contents("php://input"));
         $email = $user->email;
     	$password = $user->password;
-
-	    $validationResponse = $this->validateForm($email, $password);
+        $validationResponse = $this->validateForm($email, $password);
 	    if($validationResponse['error_code'] == 1) {
 	    	$this->load->model('user_model', 'usermodel');
     		$databaseValidationResponse = $this->usermodel->getUser($email, $password);
-    		if($databaseValidationResponse['error_code'] == 1) {
+            if($databaseValidationResponse['error_code'] == 1) {
     			$databaseValidationResponse['session'] = $this->session->userdata;
-    			echo json_encode($databaseValidationResponse);
+                echo json_encode($databaseValidationResponse);
     		}
     		else {
     			echo json_encode($databaseValidationResponse);
@@ -40,20 +39,22 @@ class User extends MY_Controller
 
     public function authenticated() {
         $sessionData = array(
-            "sessionid" => "",
+            "user_id" => "",
             "clinic_name" => "",
             "email" => "",
-            "authenticated" => false
+            "contact" => "",
+            "authenticated" => ""
         );
 
-        if(isset($_SESSION['id']) && isset($_SESSION['clinic']) && isset($_SESSION['email']) && isset($_SESSION['authenticated'])) {
+        if(isset($_SESSION['user_id']) && isset($_SESSION['clinic']) && isset($_SESSION['email']) && isset($_SESSION['authenticated'])) {
+            
             $sessionData = array(
-                "sessionid" => $_SESSION['id'],
+                "user_id" => $_SESSION['user_id'],
                 "clinic_name" => $_SESSION['clinic'],
                 "email" => $_SESSION['email'],
+                "contact" => $_SESSION['contact'],
                 "authenticated" => $_SESSION['authenticated']
             );
-
             echo json_encode($sessionData);
         }
     }
