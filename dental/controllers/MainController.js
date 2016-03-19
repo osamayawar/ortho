@@ -16,16 +16,6 @@ myApp.controller('MainController', function($scope, $http, $filter, $q, $rootSco
 			$scope.initPagination(totalPatientsCount);
 		});
 
-	var orderBy = $filter('orderBy');
-	
-  	$scope.order = function(predicate) {
-  		$scope.predicate = predicate;
-  		$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
-   	 	$scope.patientsList = orderBy($scope.patientsList, $scope.predicate, $scope.reverse);
-  	};
-  	
-  	$scope.order('id', true);
-  	
   	$scope.initPagination = function(patientCount) {
   		$scope.itemsPerPage = 15
   		$scope.currentPage = 1;
@@ -38,7 +28,17 @@ myApp.controller('MainController', function($scope, $http, $filter, $q, $rootSco
 				$scope.filteredPatientsList = $scope.patientsList.slice(begin, end);
     			return $scope.filteredPatientsList;
     		});
-  		// });
-	}
-	/** Pagination Ends Here */
+  	}
+	
+	var orderBy = $filter('orderBy');	
+  	$scope.order = function(predicate) {
+  		$scope.predicate = predicate;
+  		$scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+   	 	$scope.filteredPatientsList = orderBy($scope.filteredPatientsList, $scope.predicate, $scope.reverse);
+  	};
+  	$scope.order('id', true);
+  	
+
+
+
 });

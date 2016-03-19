@@ -10,10 +10,15 @@
 			<div class="box-body table-responsive no-padding">
 				<table id="patientsTable" class="table table-hover">
 	    			<thead class='thead'>
-	              		<th ng-click="order('id')">ID</th>
+		              	<span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span>
+		          		<th ng-click="order('id')">ID</th>
+		          		<span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span>
 			          	<th ng-click="order('clinic_name')">Clinic Name</th>
+			          	<span class="sortorder" ng-show="predicate === 'clinic_name'" ng-class="{reverse:reverse}"></span>
 			          	<th ng-click="order('email')">Email</th>
+			          	<span class="sortorder" ng-show="predicate === 'email'" ng-class="{reverse:reverse}"></span>
 			          	<th ng-click="order('contact')">Phone</th>
+			          	<span class="sortorder" ng-show="predicate === 'contact'" ng-class="{reverse:reverse}"></span>
 					</thead>
 	    			<tr ng-repeat="patient in filteredPatientsList">
 			         	<td>{{patient.id}}</td>
