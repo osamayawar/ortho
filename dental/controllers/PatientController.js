@@ -1,4 +1,4 @@
-myApp.controller('PatientController', function($scope, $rootScope) {
+myApp.controller('PatientController', function($scope, $rootScope, uibDateParser) {
 	Date.now = new Date().getTime();
 	$scope.patient = {};
 	$scope.patient.uniqueid = Math.floor(Date.now/1000);
@@ -15,5 +15,34 @@ myApp.controller('PatientController', function($scope, $rootScope) {
 
 	$scope.patient.occupation = 'Business';
 	$scope.patient.occupations = ['Business', 'Doctor', 'Landlord', 'Professional', 'Retired', 'Housewife', 'Service', 'Student'];	
+	
+	$scope.today = function() {
+    	$scope.patient.dob = new Date();
+  	};
 
+  	$scope.today();
+
+  	$scope.open = function() {
+    	$scope.popup.opened = true;
+  	};
+
+  	$scope.dateOptions = {
+  		dateDisabled: disabled,
+  		formatYear: 'yy',
+  		maxDate: new Date(2020, 5, 22),
+  		minDate: new Date(),
+  		startingDay: 1
+  	};
+
+  	function disabled(data) {
+  		var date = data.date,
+    	mode = data.mode;
+    	return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+  	}
+
+  	$scope.altInputFormats = ['M!/d!/yyyy'];
+  	$scope.popup = {
+    	opened: false,
+  	};
 });
+
