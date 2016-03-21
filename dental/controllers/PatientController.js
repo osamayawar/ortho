@@ -46,12 +46,16 @@ myApp.controller('PatientController', function($scope, $rootScope, $http, $timeo
 
     $scope.addNewPatient = function(userInfo) {
         $scope.patientForm.submitted = true;
-        if ($scope.patientForm.$valid) {
+        // if ($scope.patientForm.$valid) {
             $http.post('api/patient/addNew', userInfo)
                 .then(function(res){
-                     $scope.alerts = "Patient Successfully Added";
+                    if(res.data.error_code == 0) {
+                        $scope.errors = "The form is incomplete and cannot be submitted, please fill the required fields";
+                    } else {
+                        $scope.alerts = "Patient Successfully Added";
+                    }
                 });
-        }
+        // }
     }
 });
 
