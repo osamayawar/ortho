@@ -8,9 +8,8 @@
 	<div class="row">
 		<div ng-controller="PatientController" class="col-md-12">
 			<div class="box box-primary">
-				<form role="form" class="form-horizontal" novalidate>
+				<form role="form" name="patientForm" class="form-horizontal" novalidate>
 					<div class="box-body">
-
 						<div class="form-group">
 							<div class="col-md-2">
 								<label>Registration Number</label>
@@ -26,12 +25,15 @@
 								</select>
 							</div>
 							<div class="col-md-4">
-								<label for="firstname">First Name</label>
-								<input type="text" class="form-control" ng-model="patient.firstname" placeholder="Enter your first name">
+								<label for="First Name">First Name</label>
+								<input type="text" class="form-control" ng-model="patient.firstname" name="firstname" placeholder="Enter your first name" required>
+								<span class="error" ng-show="patientForm.submitted && patientForm.firstname.$invalid">Please enter first name.</span>
+								
 							</div>
 							<div class="col-md-4">
-								<label for="lastname">Last Name</label>
-								<input type="text" class="form-control" ng-model="patient.lastname" placeholder="Enter your last name">
+								<label for="Last Name">Last Name</label>
+								<input type="text" class="form-control" ng-model="patient.lastname" name="lastname"  placeholder="Enter your last name" required>
+								<span class="error" data-ng-show="patientForm.submitted && patientForm.lastname.$invalid">Please enter last name.</span>
 							</div>
 						</div>
 
@@ -64,15 +66,18 @@
 						<div class="form-group">
 							<div class="col-md-4">
 								<label for="cellphone">Cell</label>
-								<input type="text" class="form-control" id="cell" ng-model="patient.cell" placeholder="Enter your mobile phone number">
+								<input type="text" class="form-control" ng-model="patient.cell" name="cell" placeholder="Enter your mobile phone number" required>
+								<span class="error" data-ng-show="patientForm.submitted && patientForm.cell.$invalid">Please enter cell number.</span>
 							</div>
 							<div class="col-md-4">
 								<label for="cellphone">Phone</label>
-								<input type="text" class="form-control" id="phone" ng-model="patient.phone" placeholder="Enter your home phone number">
+								<input type="text" class="form-control" ng-model="patient.phone" name="phone" placeholder="Enter your home phone number" required>
+								<span class="error" data-ng-show="patientForm.submitted && patientForm.phone.$invalid">Please enter phone number.</span>
 							</div>
 							<div class="col-md-4">
 								<label for="lastname">Email Address</label>
-								<input type="email" class="form-control" id="lastname" ng-model="pateint.email" placeholder="Enter your email address">
+								<input type="email" class="form-control" ng-model="patient.email" name="email" placeholder="Enter your email address" required>
+								<span class="error" data-ng-show="patientForm.submitted && patientForm.email.$invalid">Please enter correct email address</span>
 							</div>
 						</div>
 
@@ -80,7 +85,8 @@
 						<div class="form-group">
 							<div class="col-md-6">
 								<label for="address">Address</label>
-								<input type="text" class="form-control" id="address" ng-model="patient.address" placeholder="Enter your address">
+								<input type="text" class="form-control" name="address" ng-model="patient.address" placeholder="Enter your address">
+								<span class="error" data-ng-show="patientForm.submitted && patientForm.cell.$invalid">Please enter address.</span>
 							</div>
 							<div class="col-md-6">
 								<label for="address">Occupation</label>
@@ -93,12 +99,15 @@
 						<div class="form-group">
 							<div class="col-md-12">
 								<label for="address">Reason of Visit</label>
-								<textarea class="form-control visit_reason" ng-model="patient.reasonOfVisit"rows="10" scroll></textarea>
+								<textarea class="form-control visit_reason" ng-model="patient.reasonOfVisit" name="reasonOfVist" rows="5" scroll required></textarea>
+								<span class="error" data-ng-show="patientForm.submitted && patientForm.cell.$invalid">Please enter the reason of visit.</span>
 							</div>
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
-								<button class="btn-block btn btn-success" type="button">Submit</button>
+								<div ng-show="alerts != null" class="alert alert-success" role="alert">
+            						<span class="sr-only">Error:</span>{{alerts}}</div>
+								<button class="btn-block btn btn-primary" ng-click="addNewPatient(patient)" type="button">Submit</button>
 							</div>
 						</div>
 					</div>
@@ -107,109 +116,3 @@
 		</div>
 	</div>
 </section>
-
-					
-					
-					<!-- <div class="form-group"> -->
-						<!-- <div class="col-md-3">
-							<label for="refdoctor">Referring Doctor</label>
-							<select class="form-control" id="refdoctor" name="refdoctor">
-								<option> Doctor 1 </option>
-								<option> Doctor 2 </option>
-								<option> Doctor 3 </option>
-								<option> Doctor 4 </option>
-								<option> Doctor 5 </option>
-								<option> Doctor 6 </option>
-							</select>
-						</div>
-						<div class="col-md-3">
-							<label for="refpatient">Referring Patient</label>
-							<select class="form-control" id="refpatient" name="refpatient">
-								<option> Patient 1 </option>
-								<option> Patient 2 </option>
-								<option> Patient 3 </option>
-								<option> Patient 4 </option>
-								<option> Patient 5 </option>
-								<option> Patient 6 </option>
-							</select>
-						</div>
-						<div class="col-md-6">
-							<label for="attendingdoctor">Attending Doctor</label>
-							<select class="form-control" id="attendingdoctor" name="attendingdoctor">
-								<option> Doctor 1 </option>
-								<option> Doctor 2 </option>
-								<option> Doctor 3 </option>
-								<option> Doctor 4 </option>
-								<option> Doctor 5 </option>
-								<option> Doctor 6 </option>
-							</select>
-						</div>
-					</div>
-				</div>
-				
-				<div class="form-wrapper row-top-buffer">	
-					<div class="form-group">	
-						<div class="col-md-6">
-							<b>Health Alerts</b>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" value="">Option one is this and that&mdash;be sure to include why it's great
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" value="">Option one is this and that&mdash;be sure to include why it's great
-								</label>
-							</div>
-						</div>
-			
-			
-						<div class="col-md-6">
-							<b>Allergies</b>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" value="">Option one is this and that&mdash;be sure to include why it's great
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" value="">Option one is this and that&mdash;be sure to include why it's great
-								</label>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="form-group">
-						<div class="form-wrapper row-top-buffer">
-							<label class="radio-inline">
-									<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Treatment in progress
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="form-group">
-						<div class="form-wrapper row-top-buffer">
-							<label class="radio-inline">
-									<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Treatment Completed, Payment Due.
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="form-group">
-						<div class="form-wrapper row-top-buffer">
-							<label class="radio-inline">
-									<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Treatment Completed, Fully Paid.
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="form-group">
-						<button class="btn-block btn btn-success" type="button">Submit</button>
-					</div>
-				</div> -->
-	

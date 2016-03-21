@@ -11,20 +11,23 @@
 				<table id="patientsTable" class="table table-hover">
 	    			<thead class='thead'>
 		              	<!-- <span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span> -->
-		          		<th ng-click="order('userid')">ID</th>
+		          		<th ng-click="order('registration_number')">Registration #</th>
 		          		<!-- <span class="sortorder" ng-show="predicate === 'id'" ng-class="{reverse:reverse}"></span> -->
-			          	<th ng-click="order('clinicname')">Clinic Name</th>
+			          	<th ng-click="order('first_name')">First Name</th>
 			          	<!-- <span class="sortorder" ng-show="predicate === 'clinic_name'" ng-class="{reverse:reverse}"></span> -->
-			          	<th ng-click="order('email')">Email</th>
+			          	<th ng-click="order('last_name')">Last Name</th>
 			          	<!-- <span class="sortorder" ng-show="predicate === 'email'" ng-class="{reverse:reverse}"></span> -->
-			          	<th ng-click="order('contact')">Phone</th>
+			          	<th ng-click="order('gender')">Gender</th>
+
+			          	<th ng-click="order('cell')">Cell</th>
 			          	<!-- <span class="sortorder" ng-show="predicate === 'contact'" ng-class="{reverse:reverse}"></span> -->
 					</thead>
 	    			<tr ng-repeat="patient in filteredPatientsList">
-			         	<td>{{patient.id}}</td>
-			         	<td>{{patient.clinic_name}}</td>
-			         	<td>{{patient.email}}</td>
-			         	<td>{{patient.contact}}</td>
+			         	<td>{{patient.registration_number}}</td>
+			         	<td>{{patient.first_name}}</td>
+			         	<td>{{patient.last_name}}</td>
+			         	<td>{{patient.gender}}</td>
+			         	<td>{{patient.cell}}</td>
 			     	</tr>
 	  			</table>
 			</div>

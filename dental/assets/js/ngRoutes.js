@@ -32,7 +32,6 @@ myApp.run(function($rootScope, $http, $location, $routeParams){
 					}
 				}
 			});
-		console.log($rootScope);
 	});
 });
 

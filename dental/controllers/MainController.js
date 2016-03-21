@@ -8,6 +8,7 @@ myApp.controller('MainController', function($scope, $http, $filter, $q, $rootSco
 	var promise = $http.get('api/patient/getAllPatients');
 	promise.then(
 		function(res) {
+      console.log(res);
 			$scope.patientsList = res.data;
 			totalPatientsCount = res.data.length;
 		});
