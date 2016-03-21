@@ -46,7 +46,7 @@ myApp.controller('PatientController', function($scope, $rootScope, $http, $timeo
 
     $scope.addNewPatient = function(userInfo) {
         $scope.patientForm.submitted = true;
-        // if ($scope.patientForm.$valid) {
+        if ($scope.patientForm.$valid) {
             $http.post('api/patient/addNew', userInfo)
                 .then(function(res){
                     if(res.data.error_code == 0) {
@@ -55,7 +55,7 @@ myApp.controller('PatientController', function($scope, $rootScope, $http, $timeo
                         $scope.alerts = "Patient Successfully Added";
                     }
                 });
-        // }
+        }
     }
 });
 
