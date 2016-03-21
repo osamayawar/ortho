@@ -76,8 +76,7 @@
 							</div>
 							<div class="col-md-4">
 								<label for="lastname">Email Address</label>
-								<input type="email" class="form-control" ng-model="patient.email" name="email" placeholder="Enter your email address" required>
-								<span class="error" data-ng-show="patientForm.submitted && patientForm.email.$invalid">Please enter correct email address</span>
+								<input type="email" class="form-control" ng-model="patient.email" name="email" placeholder="Enter your email address" ng-model-options="{ getterSetter: true }">
 							</div>
 						</div>
 

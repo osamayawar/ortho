@@ -92,15 +92,6 @@ class Patient extends MY_Controller
 					}
 					break;
 
-				case 'email':
-					if(empty($patientData)){
-						return array(
-							'error_code' => 0,
-							'message' => "Enter patient`s email address."
-							);
-					}
-					break;
-
 				case 'address': 
 					if(empty($patientData)){
 						return array(

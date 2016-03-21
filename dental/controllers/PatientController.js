@@ -3,6 +3,7 @@ myApp.controller('PatientController', function($scope, $rootScope, $http, $timeo
     $scope.init = function() {
         Date.now = new Date().getTime();
         $scope.patient = {};
+        $scope.patient.email = null;
         $scope.patient.uniqueid = Math.floor(Date.now/1000);
         $scope.patient.selectedInitial = 'Mr';
         $scope.patient.initials = ['Mr', 'Mrs', 'Dr', 'Dr [Mrs]', 'Prof', 'Mister', 'Miss', 'Ms'];
@@ -12,8 +13,7 @@ myApp.controller('PatientController', function($scope, $rootScope, $http, $timeo
         $scope.patient.maritalstatuses = ['Single', 'Married', 'Separated', 'Divorced', 'Widow'];
         $scope.patient.occupation = 'Business';
         $scope.patient.occupations = ['Business', 'Doctor', 'Landlord', 'Professional', 'Retired', 'Housewife', 'Service', 'Student'];  
-        $scope.patient.reasonOfVisit = "";
-        
+
         $scope.today = function() {
             $scope.patient.dob = new Date();
         };
@@ -45,6 +45,7 @@ myApp.controller('PatientController', function($scope, $rootScope, $http, $timeo
     $scope.init();
 
     $scope.addNewPatient = function(userInfo) {
+        console.log(userInfo);
         $scope.patientForm.submitted = true;
         if ($scope.patientForm.$valid) {
             $http.post('api/patient/addNew', userInfo)
