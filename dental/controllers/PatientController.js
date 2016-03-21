@@ -27,7 +27,7 @@ myApp.controller('PatientController', function($scope, $rootScope, $http, $timeo
             dateDisabled: disabled,
             formatYear: 'yy',
             maxDate: new Date(2020, 5, 22),
-            minDate: new Date(),
+            minDate: new Date(1960, 1, 1),
             startingDay: 1
         };
 
@@ -50,7 +50,7 @@ myApp.controller('PatientController', function($scope, $rootScope, $http, $timeo
             $http.post('api/patient/addNew', userInfo)
                 .then(function(res){
                     if(res.data.error_code == 0) {
-                        $scope.errors = "The form is incomplete and cannot be submitted, please fill the required fields";
+                        $scope.errors = "The form is incomplete and cannot be submitted, please fill all the required fields";
                     } else {
                         $scope.alerts = "Patient Successfully Added";
                     }
